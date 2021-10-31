@@ -33,8 +33,8 @@ ${submitButton}           xpath://button[@id='submitButton']
 ${VALID PASSWORD}    S3nh4-F0rte
 ${VALID USER}        email@teste.com
 
-*** Test Cases ***               EMAIL            PASSWORD              NAME         LASTNAME      COMPANYSITE
-Invalid Email                    invalid          ${VALID PASSWORD}     +5538999     whatever      www.whatever.com
+*** Test Cases ***               EMAIL            PASSWORD              FULL NAME    LASTNAME      COMPANYSITE
+Invalid Email                    invalid          ${VALID PASSWORD}     whatever     +5538999      www.whatever.com
 Invalid Password                 ${VALID USER}    invalid               whatever     whatever      www.whatever.com
 Invalid Email And Password       invalid          whatever              whatever     whatever      www.whatever.com
 Empty Email                      ${EMPTY}         ${VALID PASSWORD}     whatever     whatever      www.whatever.com
@@ -57,27 +57,27 @@ Click Forgot Password
 
 Input Full Name 
     [Arguments]    ${username}
-    Input Text     ${FullName}    ${username}
-
-Input Password
-    [Arguments]    ${password}
-    Input Text     ${Password}    ${password}
+    Input Text     FullName    ${username}
 
 Input Email
     [Arguments]    ${email}
-    Input Text     ${Email}    ${email}
+    Input Text     Email    ${email}
+
+Input Password
+    [Arguments]    ${password}
+    Input Text     Password    ${password}
 
 Input Phone Number
 	[Arguments]    ${phonenumber}
-	Input Text     ${PhoneNumber}    ${phonenumber}
+	Input Text     PhoneNumber    ${phonenumber}
 
 Input Company Site
 	[Arguments]    ${companysite}
-	Input Text     ${CompanySite}    ${companysite}
+	Input Text     CompanySite    ${companysite}
 
 Select Size Company
 	[Arguments]    ${value}
-    Select By Value    ${placeholder}    ${value}
+    Select By Value    placeholder    ${value}
 
 Submit Credentials
     Click Button    ${buttonLogin}
@@ -89,10 +89,10 @@ Send Recovery Link
     Click Button    ${buttonSendRecoveryLink}
 
 Accounts Create With Invalid Fields Should Fail
-    [Arguments]                    ${full name}    ${email}    ${password}    ${phonenumber}   ${companysite}
+    [Arguments]                    ${full_name}    ${email}    ${password}    ${phonenumber}   ${companysite}
     Click Link                     ${linkNewAccount}
     Wait Until Element Is Visible      ${FullName}
-    Input Full Name                ${full name}
+    Input Full Name                ${full_name}
     Input Email                    ${email}
     Input Password                 ${password}
     Input Phone Number             ${phonenumber}
